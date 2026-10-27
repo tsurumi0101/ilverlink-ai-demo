@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SilverLink AI — Interactive Prototype</title>
+<style>
+:root{--navy:#173b55;--teal:#1f9c91;--mint:#e8f7f3;--cream:#f7f8f4;--ink:#20313c;--muted:#687b85;--red:#c74343;--gold:#f0bd58}
+*{box-sizing:border-box}body{margin:0;background:#e9eef0;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+.app{max-width:430px;min-height:100vh;margin:auto;background:var(--cream);position:relative;padding-bottom:86px;box-shadow:0 0 35px #19394b20}
+header{background:var(--navy);color:white;padding:22px 20px 18px;border-radius:0 0 24px 24px}
+.brand{font-size:13px;letter-spacing:1.8px;font-weight:800;color:#a8e8dc}.headrow{display:flex;align-items:center;justify-content:space-between;margin-top:12px}.headrow h1{font-size:24px;margin:0}.avatar{width:42px;height:42px;border-radius:50%;background:#d5f2eb;color:var(--navy);display:grid;place-items:center;font-weight:800}
+main{padding:18px 16px}.eyebrow{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.4px}.card{background:white;border:1px solid #e4eae8;border-radius:18px;padding:16px;margin-bottom:13px;box-shadow:0 4px 15px #15384a08}.row{display:flex;align-items:center;gap:12px}.between{justify-content:space-between}.icon{width:44px;height:44px;display:grid;place-items:center;background:var(--mint);border-radius:14px;font-size:23px;flex-shrink:0}.muted{color:var(--muted);font-size:13px;line-height:1.5}.big{font-size:22px;font-weight:800}.btn{border:0;border-radius:13px;padding:13px 15px;background:var(--teal);color:white;font-weight:750;font-size:15px;cursor:pointer;width:100%;margin-top:9px}.btn.secondary{background:#e9f4f1;color:var(--navy)}.btn.danger{background:var(--red)}.btn.gold{background:var(--gold);color:#3c321e}.btn.small{width:auto;margin:0;padding:9px 12px;font-size:13px}.pill{font-size:12px;padding:5px 9px;border-radius:30px;background:var(--mint);color:#16796f;font-weight:800}.sectiontitle{font-size:17px;font-weight:800;margin:20px 0 10px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:white;border:1px solid #e4eae8;border-radius:16px;padding:14px;cursor:pointer;text-align:left;color:var(--ink);min-height:112px}.tile .icon{margin-bottom:10px}.tile strong{display:block}.tile span{font-size:12px;color:var(--muted)}.nav{position:fixed;bottom:0;width:min(430px,100%);display:flex;justify-content:space-around;background:white;border-top:1px solid #e1e8e6;padding:9px 4px calc(9px + env(safe-area-inset-bottom));z-index:3}.nav button{background:none;border:0;color:#71838a;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}.nav button b{font-size:20px;font-weight:500}.nav button.active{color:var(--teal);font-weight:800}.screen{display:none}.screen.active{display:block}.back{border:0;background:transparent;color:white;font-size:14px;cursor:pointer;padding:0}.alertbox{background:#fff0ed;border:1px solid #f2c8c2;border-radius:16px;padding:14px}.alertbox strong{color:#a52c2c}.field{width:100%;padding:12px;border:1px solid #d7e1de;border-radius:12px;background:white;font-size:15px;margin:6px 0 12px}.choice{display:flex;gap:10px;align-items:center;padding:13px;border:1px solid #dce7e3;border-radius:13px;background:white;margin:9px 0;cursor:pointer}.choice.selected{border:2px solid var(--teal);background:#effaf7}.notice{font-size:12px;color:#65777d;background:#f0f4f3;border-radius:12px;padding:11px;line-height:1.5}.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:78px;background:#173b55;color:white;border-radius:12px;padding:12px 16px;font-size:13px;z-index:10;display:none;width:calc(min(398px,100% - 28px));text-align:center}.metric{flex:1;background:#f2f8f6;border-radius:14px;padding:12px}.metric strong{font-size:20px;display:block}.bar{height:8px;border-radius:20px;background:#e3eeeb;overflow:hidden;margin:7px 0}.bar i{display:block;height:100%;background:var(--teal);border-radius:20px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<div class="brand">SILVERLINK AI</div>
+<div class="headrow"><div><div class="eyebrow" style="color:#c7dce4">เครือข่ายดูแลผู้สูงอายุในชุมชน</div><h1 id="headTitle">หน้าหลัก</h1></div><div class="avatar">SL</div></div>
+</header>
+<main>
+<section class="screen active" id="home">
+<div class="row between" style="margin-bottom:15px"><div><div class="muted">สวัสดีครับ</div><div class="big">คุณสมใจ</div></div><span class="pill">● ระบบตัวอย่าง</span></div>
+<div class="card"><div class="row"><div class="icon">💚</div><div style="flex:1"><strong>วันนี้คุณเป็นอย่างไรบ้าง?</strong><div class="muted">บันทึกสุขภาพสั้น ๆ เพื่อให้ผู้ดูแลติดตามได้</div></div></div><div class="grid2" style="margin-top:14px"><div class="metric"><span class="muted">ความรู้สึก</span><strong>สบายดี</strong></div><div class="metric"><span class="muted">กิจกรรมวันนี้</span><strong>2 รายการ</strong></div></div><button class="btn" onclick="go('health')">บันทึกสุขภาพวันนี้</button></div>
+<div class="sectiontitle">ทางลัดสำคัญ</div>
+<div class="grid2">
+<button class="tile" onclick="go('emergency')"><div class="icon">🆘</div><strong>ขอความช่วยเหลือ</strong><span>แจ้งผู้ดูแลเมื่อฉุกเฉิน</span></button>
+<button class="tile" onclick="go('activities')"><div class="icon">🌱</div><strong>กิจกรรมชุมชน</strong><span>พบปะและทำสิ่งที่ชอบ</span></button>
+<button class="tile" onclick="go('helpers')"><div class="icon">📍</div><strong>ผู้ช่วยใกล้ฉัน</strong><span>ดูรายชื่อผู้ช่วยตัวอย่าง</span></button>
+<button class="tile" onclick="go('caregiver')"><div class="icon">👨‍👩‍👧</div><strong>มุมผู้ดูแล</strong><span>ดูการแจ้งเตือนจำลอง</span></button>
+</div>
+<div class="notice" style="margin-top:14px">หมายเหตุ: หน้าจอนี้เป็น Prototype สำหรับสาธิต ข้อมูลสุขภาพ ตำแหน่ง และการแจ้งเตือนเป็นข้อมูลจำลอง ไม่ได้ติดต่อหน่วยฉุกเฉินจริง</div>
+</section>
+
+<section class="screen" id="health">
+<div class="card"><div class="row"><div class="icon">🩺</div><div><strong>บันทึกสุขภาพประจำวัน</strong><div class="muted">ข้อมูลตัวอย่างสำหรับทดสอบการใช้งาน</div></div></div></div>
+<label class="eyebrow">วันนี้รู้สึกอย่างไร</label>
+<select class="field" id="feeling"><option>สบายดี</option><option>เหนื่อยเล็กน้อย</option><option>เวียนศีรษะ</option><option>ไม่สบาย</option></select>
+<label class="eyebrow">หมายเหตุเพิ่มเติม</label><textarea class="field" id="healthnote" rows="3" placeholder="เช่น นอนหลับไม่สนิท หรือมีอาการปวดเข่า"></textarea>
+<div class="card"><div class="row between"><span>ดื่มน้ำวันนี้</span><strong id="waterText">4 / 8 แก้ว</strong></div><div class="bar"><i id="waterBar" style="width:50%"></i></div><div class="row"><button class="btn secondary" onclick="water(-1)">− ลด</button><button class="btn" onclick="water(1)">+ เพิ่มน้ำ</button></div></div>
+<button class="btn" onclick="saveHealth()">บันทึกข้อมูล</button>
+<div class="notice" style="margin-top:12px">ข้อมูลนี้เป็นการบันทึกเพื่อสาธิต ไม่ใช่การวินิจฉัยโรค หากมีอาการฉุกเฉินให้ติดต่อบริการฉุกเฉินหรือผู้ดูแลโดยตรง</div>
+</section>
+
+<section class="screen" id="emergency">
+<div class="alertbox"><strong>โหมดสาธิตการแจ้งเหตุ</strong><div class="muted" style="color:#8b4844">ปุ่มนี้จะสร้างการแจ้งเตือนจำลองภายใน Prototype เท่านั้น</div></div>
+<div class="card" style="text-align:center;padding:25px 18px"><div style="font-size:56px">🆘</div><h2 style="margin:8px 0">ต้องการความช่วยเหลือไหม?</h2><p class="muted">กดปุ่มด้านล่างเพื่อจำลองการส่งแจ้งเตือนไปยังผู้ดูแล</p><button class="btn danger" style="font-size:18px;padding:17px" onclick="triggerAlert()">จำลองการขอความช่วยเหลือ</button><button class="btn secondary" onclick="go('home')">ยกเลิก / กลับหน้าหลัก</button></div>
+<div id="alertResult" class="card" style="display:none"><span class="pill">แจ้งเตือนจำลองแล้ว</span><h3>ส่งสถานะไปยังมุมผู้ดูแล</h3><p class="muted">ในระบบจริงต้องเชื่อมต่อผู้ดูแลที่ได้รับอนุญาต ระบบแจ้งเตือน และข้อมูลตำแหน่งอย่างปลอดภัย</p><button class="btn" onclick="go('caregiver')">ดูหน้าจอผู้ดูแล</button></div>
+</section>
+
+<section class="screen" id="caregiver">
+<div class="row between"><div><div class="eyebrow">CAREGIVER VIEW</div><h2 style="margin:4px 0 12px">ภาพรวมผู้สูงอายุ</h2></div><span class="pill">DEMO</span></div>
+<div class="card"><div class="row"><div class="avatar" style="background:#e5f5f0">ส</div><div style="flex:1"><strong>คุณสมใจ ใจดี</strong><div class="muted">ผู้สูงอายุ · ชุมชนตัวอย่าง</div></div><span class="pill">ปกติ</span></div><div class="grid2" style="margin-top:14px"><div class="metric"><span class="muted">เช็กอินล่าสุด</span><strong style="font-size:16px">09:15 น.</strong></div><div class="metric"><span class="muted">สุขภาพวันนี้</span><strong style="font-size:16px" id="careFeeling">สบายดี</strong></div></div></div>
+<div id="careAlert" class="alertbox" style="display:none"><strong>⚠ มีการขอความช่วยเหลือ (จำลอง)</strong><p class="muted" style="color:#8b4844">เวลา: ตอนนี้ · โปรดตรวจสอบผู้สูงอายุผ่านช่องทางที่กำหนด</p><div class="row"><button class="btn small" onclick="toast('บันทึกว่าได้รับทราบแล้ว (จำลอง)')">รับทราบ</button><button class="btn small secondary" onclick="toast('ระบบจริงจะเปิดการโทรหรือแชตที่เชื่อมต่อไว้')">ติดต่อกลับ</button></div></div>
+<div class="sectiontitle">สิ่งที่ควรติดตาม</div><div class="card"><div class="row"><div class="icon">💧</div><div><strong>การดื่มน้ำ</strong><div class="muted">ตัวอย่างข้อมูล: 4 จาก 8 แก้ว</div></div></div></div>
+<div class="card"><div class="row"><div class="icon">📅</div><div><strong>กิจกรรมชุมชน</strong><div class="muted">มี 2 กิจกรรมที่ผู้สูงอายุสนใจ</div></div></div><button class="btn secondary" onclick="go('activities')">ดูกิจกรรม</button></div>
+</section>
+
+<section class="screen" id="activities">
+<div class="eyebrow">COMMUNITY CONNECTION</div><h2 style="margin:4px 0 14px">กิจกรรมใกล้ชุมชน</h2>
+<div class="card"><div class="row"><div class="icon">🧘</div><div style="flex:1"><strong>ยืดเหยียดและขยับร่างกาย</strong><div class="muted">พุธ · 09:00–10:00 น.</div><div class="muted">ศาลาชุมชนตัวอย่าง</div></div></div><button class="btn" onclick="join(this,'ยืดเหยียดและขยับร่างกาย')">สนใจเข้าร่วม</button></div>
+<div class="card"><div class="row"><div class="icon">🌿</div><div style="flex:1"><strong>ปลูกผักและแบ่งปัน</strong><div class="muted">ศุกร์ · 15:00–16:00 น.</div><div class="muted">สวนชุมชนตัวอย่าง</div></div></div><button class="btn" onclick="join(this,'ปลูกผักและแบ่งปัน')">สนใจเข้าร่วม</button></div>
+<div class="card"><div class="row"><div class="icon">🎨</div><div style="flex:1"><strong>งานฝีมือและพูดคุย</strong><div class="muted">เสาร์ · 10:00–11:30 น.</div><div class="muted">ห้องกิจกรรมตัวอย่าง</div></div></div><button class="btn" onclick="join(this,'งานฝีมือและพูดคุย')">สนใจเข้าร่วม</button></div>
+<div class="notice">วัน เวลา และสถานที่เป็นข้อมูลสมมติ ต้องยืนยันกับผู้จัดก่อนนำไปใช้งานจริง</div>
+</section>
+
+<section class="screen" id="helpers">
+<div class="eyebrow">COMMUNITY SUPPORT</div><h2 style="margin:4px 0 14px">ผู้ช่วยในชุมชน</h2>
+<div class="card"><div class="row"><div class="icon">📍</div><div><strong>ตำแหน่งตัวอย่าง</strong><div class="muted">แผนที่จริงยังไม่เชื่อมต่อใน Prototype นี้</div></div></div><div style="height:130px;border-radius:14px;background:linear-gradient(135deg,#e1f0e9,#dce8f0);display:grid;place-items:center;margin-top:14px;color:#315b67;font-weight:800">แผนที่จำลอง · ชุมชนตัวอย่าง</div></div>
+<div class="card"><div class="row"><div class="icon">🧑‍⚕️</div><div style="flex:1"><strong>อสม. ตัวอย่าง</strong><div class="muted">ผู้ช่วยชุมชน · สถานะตัวอย่าง</div></div><button class="btn small" onclick="toast('ในระบบจริงจะติดต่อผ่านช่องทางที่ได้รับอนุญาต')">ติดต่อ</button></div></div>
+<div class="card"><div class="row"><div class="icon">🤝</div><div style="flex:1"><strong>อาสาสมัครชุมชน</strong><div class="muted">ช่วยประสานกิจกรรมและการเดินทาง</div></div><button class="btn small" onclick="toast('ส่งคำขอติดต่อจำลองแล้ว')">ขอความช่วยเหลือ</button></div></div>
+</section>
+
+<section class="screen" id="profile">
+<div class="card"><div class="row"><div class="avatar">ส</div><div><strong>คุณสมใจ ใจดี</strong><div class="muted">บัญชีตัวอย่าง · ผู้สูงอายุ</div></div></div></div>
+<div class="sectiontitle">บทบาทที่ใช้สาธิต</div>
+<div class="choice selected" onclick="selectRole(this,'ผู้สูงอายุ')"><div class="icon">👵</div><div><strong>ผู้สูงอายุ</strong><div class="muted">บันทึกสุขภาพและเข้าร่วมกิจกรรม</div></div></div>
+<div class="choice" onclick="selectRole(this,'ครอบครัว / ผู้ดูแล')"><div class="icon">👨‍👩‍👧</div><div><strong>ครอบครัว / ผู้ดูแล</strong><div class="muted">ติดตามสถานะและการแจ้งเตือน</div></div></div>
+<div class="choice" onclick="selectRole(this,'อสม. / อาสาสมัคร')"><div class="icon">🤝</div><div><strong>อสม. / อาสาสมัคร</strong><div class="muted">ช่วยประสานการดูแลในชุมชน</div></div></div>
+<div class="sectiontitle">ความเป็นส่วนตัว</div><div class="notice">ระบบจริงควรขอความยินยอมก่อนแบ่งปันข้อมูลสุขภาพหรือตำแหน่ง จำกัดสิทธิ์ตามบทบาท และบันทึกประวัติการเข้าถึง</div>
+<button class="btn secondary" onclick="toast('Prototype นี้ไม่บันทึกข้อมูลออกจากเครื่อง')">ตรวจสอบข้อมูลตัวอย่าง</button>
+</section>
+</main>
+<nav class="nav">
+<button class="active" data-go="home" onclick="go('home')"><b>⌂</b>หน้าหลัก</button>
+<button data-go="health" onclick="go('health')"><b>♡</b>สุขภาพ</button>
+<button data-go="emergency" onclick="go('emergency')"><b>!</b>ฉุกเฉิน</button>
+<button data-go="activities" onclick="go('activities')"><b>♧</b>กิจกรรม</button>
+<button data-go="profile" onclick="go('profile')"><b>☻</b>โปรไฟล์</button>
+</nav>
+<div class="toast" id="toast"></div>
+</div>
+<script>
+const titles={home:'หน้าหลัก',health:'สุขภาพของฉัน',emergency:'ขอความช่วยเหลือ',caregiver:'หน้าจอผู้ดูแล',activities:'กิจกรรมชุมชน',helpers:'ผู้ช่วยใกล้ฉัน',profile:'โปรไฟล์'};
+let waterCount=4,alertOn=false,toastTimer;
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.getElementById('headTitle').textContent=titles[id]||'SilverLink AI';document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.go===id));window.scrollTo({top:0,behavior:'smooth'});}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.style.display='none',2600);}
+function water(d){waterCount=Math.max(0,Math.min(8,waterCount+d));document.getElementById('waterText').textContent=waterCount+' / 8 แก้ว';document.getElementById('waterBar').style.width=(waterCount/8*100)+'%';}
+function saveHealth(){document.getElementById('careFeeling').textContent=document.getElementById('feeling').value;toast('บันทึกในหน้าจอสาธิตแล้ว');}
+function triggerAlert(){alertOn=true;document.getElementById('alertResult').style.display='block';document.getElementById('careAlert').style.display='block';toast('สร้างการแจ้งเตือนจำลองแล้ว');}
+function join(btn,name){btn.textContent='ลงทะเบียนความสนใจแล้ว';btn.classList.remove('btn');btn.classList.add('btn','secondary');btn.disabled=true;toast('บันทึกความสนใจในกิจกรรม: '+name);}
+function selectRole(el,role){document.querySelectorAll('.choice').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');toast('เลือกบทบาทตัวอย่าง: '+role);}
+</script>
+</body></html>
